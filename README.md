@@ -32,7 +32,7 @@ $ AWS_PROFILE={profile_name} terraform plan \
               -var-file="../shared/terraform.tfvars" \
               -input=false \
               -destroy
-`
+`  
 use the same apply command once the above command is executed
 
 #### To check format

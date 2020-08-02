@@ -18,9 +18,30 @@ resource "aws_vpc" "vpc" {
     }
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name        = "${title(var.app_name)} ${title(var.env)} Gateway"
+    Environment = var.env
+  }
+}
+
+resource "aws_route" "public_to_gw" {
+  route_table_id         = aws_vpc.vpc.main_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.gw.id
+}
+
+resource "aws_eip" "gw" {
+  count      = var.az_count
+  vpc        = true
+  depends_on = [aws_internet_gateway.gw]
+}
+
 resource "aws_subnet" "private" {
   count             = var.az_count
-  cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 4, count.index)
+  cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
   availability_zone = var.availability_zones[count.index]
 
   vpc_id = aws_vpc.vpc.id
@@ -33,7 +54,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_subnet" "public" {
   count             = var.az_count
-  cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 4, var.az_count + count.index)
+  cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 8, var.az_count + count.index)
   availability_zone = var.availability_zones[count.index]
 
   vpc_id = aws_vpc.vpc.id
@@ -43,6 +64,8 @@ resource "aws_subnet" "public" {
     Environment = var.env
   }
 }
+
+
 
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.vpc.id

@@ -2,7 +2,7 @@ app_name = "demo"
 
 region = "us-east-1"
 
-cidr_block = "20.0.0.0/16"
+cidr_block = "10.20.0.0/16"
 
 az_count = 2
 
