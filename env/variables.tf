@@ -22,3 +22,11 @@ variable "az_count" {
 variable "cidr_block" {
   description = "CIDR Black Information"
 }
+
+variable "ami_id" {
+
+}
+
+variable "host_key" {
+
+}

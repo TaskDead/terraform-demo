@@ -10,3 +10,6 @@ availability_zones = [
     "us-east-1a",
     "us-east-1b",
   ]
+
+host_key = "ec2-host"
+ami_id = "ami-02354e95b39ca8dec"

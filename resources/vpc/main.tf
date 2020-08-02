@@ -33,11 +33,10 @@ resource "aws_route" "public_to_gw" {
   gateway_id             = aws_internet_gateway.gw.id
 }
 
-resource "aws_eip" "gw" {
-  count      = var.az_count
-  vpc        = true
-  depends_on = [aws_internet_gateway.gw]
-}
+//resource "aws_eip" "gw" {
+//  vpc        = true
+//  depends_on = [aws_internet_gateway.gw]
+//}
 
 resource "aws_subnet" "private" {
   count             = var.az_count
