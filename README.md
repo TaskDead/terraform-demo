@@ -23,7 +23,7 @@ Initialize terraform
               -input=false
 
 #### Apply the plan
-    $ AWS_PROFILE=tmp terraform apply "/path/to/result.tfplan"`
+    $ AWS_PROFILE={profile_name} terraform apply "/path/to/result.tfplan"`
 
 #### Create plan to destroy
 
