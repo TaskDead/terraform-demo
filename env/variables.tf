@@ -1,6 +1,5 @@
 variable "env" {
   description = "Testing Environment"
-  default     = "replay"
 }
 
 variable "app_name" {

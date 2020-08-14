@@ -8,14 +8,14 @@ locals {
 
 
 resource "aws_vpc" "vpc" {
-    cidr_block           = var.cidr_block
-    enable_dns_hostnames = true
-    enable_dns_support   = true
+  cidr_block           = var.cidr_block
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
-    tags = {
-        Name        = "${title(var.app_name)} ${title(var.env)} VPC"
-        Environment = var.env
-    }
+  tags = {
+    Name        = "${title(var.app_name)} ${title(var.env)} VPC"
+    Environment = var.env
+  }
 }
 
 resource "aws_internet_gateway" "gw" {
@@ -85,7 +85,7 @@ resource "aws_default_security_group" "default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags  = {
+  tags = {
     Name        = "${title(var.app_name)} ${title(var.env)} VPC Access Security Group"
     Environment = var.env
   }

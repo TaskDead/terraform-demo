@@ -26,15 +26,15 @@ resource "aws_iam_instance_profile" "sample_profile" {
 resource "aws_instance" "sample" {
   count = 1
 
-  ami                    = var.ami_id
-  instance_type          = "t3.nano"
-  key_name               = var.host_key
-  subnet_id              = var.public_subnet_ids[count.index]
-  vpc_security_group_ids = [aws_security_group.ssh_only.id]
-  iam_instance_profile = aws_iam_instance_profile.sample_profile.name
+  ami                         = var.ami_id
+  instance_type               = "t3.nano"
+  key_name                    = var.host_key
+  subnet_id                   = var.public_subnet_ids[count.index]
+  vpc_security_group_ids      = [aws_security_group.ssh_only.id]
+  iam_instance_profile        = aws_iam_instance_profile.sample_profile.name
   associate_public_ip_address = true
 
-  tags =  {
+  tags = {
     Name        = "${title(var.app_name)} ${title(var.env)} S3 Host"
     Environment = var.env
   }
