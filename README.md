@@ -5,7 +5,7 @@ Initialize terraform
 
 
 #### Go to project directory
-    cd terraform-demo/env`
+    cd terraform-demo/env
 
 #### Initialize terraform
 
