@@ -40,4 +40,4 @@ use the same apply command once the above command is executed
     $ terraform fmt (to update file with formatting changes)
 
 #### To initialize any new modules
-    $ terraform get -update`
+    $ terraform get -update
